@@ -1,70 +1,70 @@
-// var students = ['John', 'FSF', 'Jamil', 'FSF', 'Roman', 'FSF'];
+//Setting Entries Variables//
+var lower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var upper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+var specs = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '{', '}', '[', ']', '|', ':', ';', '<', '>', '.', '?', '/'];
 
 
-// // for (var index = 0; index < students.length; index+=2) {
-// //     console.log('Name:', students[index]);
-// //     console.log('Course:', students[index + 1]);
-// // }
+// function to get user input//
+// Prompts and confirmaion to get character sets//
+function getUserInput() {
+    //Number outputs prompt entry as a 'number'//
+    var amount = Number(prompt('Choose number of characters for password here.'));
+    var lower = confirm('Click ok to include a lowercase letter?');
+    var upper = confirm('Click ok to include a uppercase letter?');
+    var numbers = confirm('Click ok to include a number?');
+    var specs = confirm('Click ok to include a special character?');
 
-
-// // function printStudentInfo(studentName) {
-// //     console.log('Name:', studentName);
-// //     // console.log('Course:', students[index + 1]);
-// // }
-
-// // printStudentInfo(students[0]);
-
-
-
-// function printStudentInfo(studentName, studentCourse) {
-//     console.log('Welcome to class!');
-//     console.log('Name:', studentName);
-//     console.log('Course:', studentCourse);
-//     console.log('Please utilize office hours for help!');
-
-// }
-
-// printStudentInfo(students[0], students[1]);
-
-
-// function printStuff(name, age, height){
-//     console.log(height, age);
-// }
-
-// printStuff('JT', 33, 69)
-
-var lowercase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-var uppercase = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-var numbers = ['0','1','2','3','4','5','6','7','8','9'];
-var characters = [];
-var combined = lowercase.concat(uppercase).concat(numbers);
-
-var amount = 50;
-var random = Math.random();
-var ranIndex = Math.floor(random * combined.length);
-var password = '';
-
-for (var count = 0; count < amount; count++) {
-    random = Math.random();
-    ranIndex = Math.floor(random * combined.length);
-    password += combined[ranIndex];
+    //always return functions//
+    return [amount, lower, upper, numbers, specs];
 }
 
+//setting var for user input//
+var choices = getUserInput();
+console.log(choices);
+
+// creating a password generator function//
+
+function generatePass() {
+    //established variables to create password format//
+    var pass = '';
+    var includelower = choices[1];
+    var includeupper = choices[2];
+    var includenumbers = choices[3];
+    var includespecs = choices[4];
+    var charAmount = choices[0];
+    var possibleChars = [];
+
+    //using prompt responsing to design format of generated password//
+    if (includelower) {
+        possibleChars = possibleChars.concat(lower);
+    }
+    if (includeupper) {
+        possibleChars = possibleChars.concat(upper);
+    }
+    if (includenumbers) {
+        possibleChars = possibleChars.concat(numbers);
+    }
+    if (includespecs) {
+        possibleChars = possibleChars.concat(specs);
+    }
+
+    //loops random character generator to the 'amount' user designates//
+    for (var count = 0; count < charAmount; count++) {
+        var randomNum = Math.random();
+        var randomIndex = Math.floor(randomNum * possibleChars.length);
+        var randomChar = possibleChars[randomIndex];
+
+        //concatenates random character generator in pass string//
+        pass += randomChar;
+    }
+
+    return pass;
+
+}
+
+var password = generatePass();
 console.log(password);
-// document.body.innerText = password;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
