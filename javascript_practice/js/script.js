@@ -9,9 +9,9 @@ var specs = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=
 // Prompts and confirmaion to get character sets//
 function getUserInput() {
     //Number outputs prompt entry as a 'number'//
-    var amount = Number(prompt('Choose number of characters for password here.'));
+    var amount = Number(prompt('Choose from 8 to 128 characters for password here.'));
     var lower = confirm('Click ok to include a lowercase letter?');
-    var upper = confirm('Click ok to include a uppercase letter?');
+    var upper = confirm('Click ok to include an uppercase letter?');
     var numbers = confirm('Click ok to include a number?');
     var specs = confirm('Click ok to include a special character?');
 
@@ -59,7 +59,7 @@ function generatePass() {
         pass += randomChar;
     }
 
-    return pass;
+    return pass;    
 
 }
 
